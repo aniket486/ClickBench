@@ -105,5 +105,5 @@ CREATE TABLE test.hits
     RefererHash BIGINT NOT NULL,
     URLHash BIGINT NOT NULL,
     CLID INTEGER NOT NULL,
-    PRIMARY KEY (CounterID, EventDate, UserID, EventTime, WatchID) NOT ENFORCED
-);
+)
+CLUSTER BY CounterID, EventDate, UserID, EventTime;

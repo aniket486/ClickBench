@@ -45,11 +45,13 @@ client = bigquery.Client(
 
 file = open('queries.sql', 'r')
 TRIES = 3
+query_num = 0
 for query in file:
   query = query.strip()
   print("[", end='')
+  query_num = query_num + 1
   for i in range(TRIES):
-    log(f"\n[{i}]: {query}")
+    log(f"[q{query_num}: {i}]: {query}")
     try:
       client_start_time = datetime.now()
       results = client.query_and_wait(query, job_config=job_config)
@@ -66,3 +68,4 @@ for query in file:
       
     except Exception as e:
       log(f"Job failed with error: {e}", severity="ERROR")
+
